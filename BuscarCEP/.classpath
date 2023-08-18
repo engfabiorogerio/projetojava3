@@ -6,5 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="src/com/fabiorogerio/buscarcep/cep/Atxy2k.jar"/>
+	<classpathentry kind="lib" path="src/com/fabiorogerio/buscarcep/cep/dom4j-2.1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

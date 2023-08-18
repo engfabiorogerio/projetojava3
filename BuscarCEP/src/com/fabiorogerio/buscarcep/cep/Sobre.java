@@ -1,20 +1,21 @@
 package com.fabiorogerio.buscarcep.cep;
 
-import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.FlowLayout;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URI;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.SystemColor;
-import javax.swing.ImageIcon;
-import java.awt.Cursor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Sobre extends JDialog {
 
@@ -35,6 +36,8 @@ public class Sobre extends JDialog {
 	 * Create the dialog.
 	 */
 	public Sobre() {
+		setModal(true);
+		setBounds(new Rectangle(150, 150, 0, 0));
 		setTitle("Sobre");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Sobre.class.getResource("/com/fabiorogerio/buscarcep/img/info_icon.ico")));
@@ -60,25 +63,44 @@ public class Sobre extends JDialog {
 			getContentPane().add(lblNewLabel_1);
 		}
 		{
-			JButton btnNewButton = new JButton("");
-			btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnNewButton.setToolTipText("Perfil GitHub");
-			btnNewButton.setIcon(new ImageIcon(Sobre.class.getResource("/com/fabiorogerio/buscarcep/img/github_icon.ico")));
-			btnNewButton.setBackground(SystemColor.control);
-			btnNewButton.setBounds(199, 98, 48, 48);
-			getContentPane().add(btnNewButton);
-		}
-		{
-			JButton btnNewButton_1 = new JButton("");
-			btnNewButton_1.setToolTipText("Perfil linkedin");
-			btnNewButton_1.addActionListener(new ActionListener() {
+			JButton btnGitHub = new JButton("");
+			btnGitHub.addActionListener(new ActionListener() {				
 				public void actionPerformed(ActionEvent e) {
+					link("https://github.com/engfabiorogerio");
 				}
 			});
-			btnNewButton_1.setIcon(new ImageIcon(Sobre.class.getResource("/com/fabiorogerio/buscarcep/img/linkedin.ico")));
-			btnNewButton_1.setBackground(SystemColor.control);
-			btnNewButton_1.setBounds(199, 168, 48, 48);
-			getContentPane().add(btnNewButton_1);
+			btnGitHub.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnGitHub.setToolTipText("Perfil GitHub");
+			btnGitHub.setIcon(new ImageIcon(Sobre.class.getResource("/com/fabiorogerio/buscarcep/img/github_icon.ico")));
+			btnGitHub.setBackground(SystemColor.control);
+			btnGitHub.setBounds(199, 98, 48, 48);
+			getContentPane().add(btnGitHub);
+		}
+		{
+			JButton btnLinkedin = new JButton("");
+			btnLinkedin.setToolTipText("Perfil linkedin");
+			btnLinkedin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					link("www.linkedin.com/in/fabiorogerio1");
+				}
+			});
+			btnLinkedin.setIcon(new ImageIcon(Sobre.class.getResource("/com/fabiorogerio/buscarcep/img/linkedin.ico")));
+			btnLinkedin.setBackground(SystemColor.control);
+			btnLinkedin.setBounds(199, 168, 48, 48);
+			getContentPane().add(btnLinkedin);
+		}
+		
+		
+		}
+		private void link(String site) {
+		Desktop desktop = Desktop.getDesktop();
+		try {
+			
+			URI uri = new URI(site);
+			desktop.browse(uri);			
+			
+		}catch (Exception e){
+			System.out.println(e);
 		}
 	}
 
